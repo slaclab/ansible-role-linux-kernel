@@ -11,7 +11,7 @@
   when: ansible_distribution == 'CentOS'
 
 - name: Get available kernel versions
-  command: "{{ ansible_pkg_mgr }} list --enablerepo=* --disablerepo=media-*,*-media --showduplicates kernel"
+  command: "{{ ansible_pkg_mgr }} list --enablerepo=rhel-8-for-x86_64-baseos-rpms --showduplicates kernel"
   changed_when: false
   args:
     warn: false
