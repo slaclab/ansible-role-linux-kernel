@@ -36,11 +36,11 @@
     - name: linux-image
       when: true
     - name: linux-headers
-      when: install_kernel_headers | bool
+      when: "{{ install_kernel_headers | bool }}"
 
 - name: Ensure any other kernel packages are removed
   apt:
     name: "{{ apt_packages_list | deb_installed_kernel(_kernel, ansible_architecture) }}"
     state: absent
     purge: true
-  tags: molecule-idempotence-notest
+  when: _apt_install.changed
