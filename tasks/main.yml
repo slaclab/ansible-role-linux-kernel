@@ -11,7 +11,7 @@
 - name: Set grubby
   shell: /usr/sbin/grubby --set-default /boot/vmlinuz-{{ _kernel }}.x86_64 
 
-- name: "Reboot if kernel changed (from {{ ansible_kernel }} to {{ _kernel }})."
+- name: "Reboot if kernel changed (from {{ ansible_kernel | regex_replace('.x86_64','') }} to {{ _kernel }})."
   reboot:
   register: linux_kernel_rebooted
   when:
